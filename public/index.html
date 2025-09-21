@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLearn Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cursor-glow"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>SmartLearn Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="theme-switcher">
+                        <span>☀️</span>
+                        <label class="switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span>🌙</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section id="courses-section">
+                <h2>My Courses</h2>
+                <div class="card-grid" id="courses-grid"></div>
+            </section>
+
+            <section id="quizzes-section">
+                <h2>Pending Quizzes</h2>
+                <div class="card-grid" id="quizzes-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

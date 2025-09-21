@@ -1,0 +1,84 @@
+/* public/login.style.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #10141c;
+    animation: background-pan 15s linear infinite;
+    background-size: 400%;
+    background-image: linear-gradient(90deg, #0d1117, #161b22, #0d1117, #161b22);
+}
+
+@keyframes background-pan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+.form-container {
+    background: rgba(22, 27, 34, 0.7);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: #e0e0e0;
+}
+
+form h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #161b22;
+    color: #e0e0e0;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    background: #58a6ff;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #4a90e2;
+}
+
+p {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+a {
+    color: #58a6ff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+#error-message {
+    color: #dc3545;
+    min-height: 1rem;
+}

@@ -1,0 +1,161 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color-light: #f4f7fc;
+    --card-bg-light: #ffffff;
+    --text-color-light: #1c1c1e;
+    --primary-color-light: #4a90e2;
+    --glow-color-light: rgba(74, 144, 226, 0.5);
+
+    --bg-color-dark: #0d1117;
+    --card-bg-dark: rgba(22, 27, 34, 0.8);
+    --text-color-dark: #e0e0e0;
+    --primary-color-dark: #58a6ff;
+    --glow-color-dark: rgba(88, 166, 255, 0.4);
+
+    --font-family: 'Poppins', sans-serif;
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --card-border: 1px solid rgba(255, 255, 255, 0.1);
+    --card-border-radius: 12px;
+    --transition-speed: 0.3s;
+}
+
+/* --- Dark Mode Class --- */
+body.dark-mode {
+    --bg-color: var(--bg-color-dark);
+    --card-bg: var(--card-bg-dark);
+    --text-color: var(--text-color-dark);
+    --primary-color: var(--primary-color-dark);
+    --glow-color: var(--glow-color-dark);
+}
+
+/* --- Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color, var(--bg-color-light));
+    color: var(--text-color, var(--text-color-light));
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    overflow-x: hidden;
+}
+
+/* --- Animated background for DARK MODE ONLY --- */
+body.dark-mode {
+    animation: background-pan 15s linear infinite;
+    background-size: 400%;
+    background-image: linear-gradient(90deg, #0d1117, #161b22, #0d1117, #161b22);
+}
+
+@keyframes background-pan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+/* --- Techy Cursor Glow Effect --- */
+#cursor-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--glow-color, var(--glow-color-dark)) 0%, rgba(255,255,255,0) 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    z-index: 0;
+    opacity: 0;
+}
+body:hover #cursor-glow { opacity: 1; }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Universal Text Color Rule (IMPORTANT) --- */
+h1, h2, h3, p, a, span {
+    color: inherit; /* This forces all text to use the color set on the body */
+}
+a { text-decoration: none; }
+
+/* --- Header & Theme Switcher --- */
+header { margin-bottom: 3rem; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+#welcome-message { font-size: 1.1rem; font-weight: 300; }
+
+/* --- Card Grid Layout --- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.card {
+    background-color: var(--card-bg, var(--card-bg-light));
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    border: var(--card-border);
+    backdrop-filter: blur(10px);
+    animation: slideInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.3s; }
+.card:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+
+/* --- "Magic" Button Style --- */
+.card-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--primary-color, var(--primary-color-dark));
+    background-color: transparent;
+    color: var(--primary-color, var(--primary-color-dark));
+    font-family: var(--font-family);
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.4s ease-in-out;
+    z-index: 1;
+}
+.card-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--primary-color, var(--primary-color-dark));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease-in-out;
+    z-index: -1;
+}
+.card-button:hover { color: #fff; }
+.card-button:hover::before { transform: scaleX(1); }
+
+/* --- Other Styles --- */
+.progress-container { margin-top: auto; }
+.progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem; opacity: 0.9; }
+.progress-bar { width: 100%; height: 8px; background-color: #333; border-radius: 8px; overflow: hidden; }
+body.light-mode .progress-bar { background-color: #e0e0e0; }
+.progress { height: 100%; background-color: var(--primary-color, var(--primary-color-light)); border-radius: 8px; width: 0; transition: width 0.8s ease-in-out; }
+.theme-switcher { display: flex; align-items: center; gap: 0.5rem; }
+.switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.switch input { display: none; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: var(--transition-speed); border-radius: 26px; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: var(--transition-speed); border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary-color, var(--primary-color-dark)); }
+input:checked + .slider:before { transform: translateX(24px); }
